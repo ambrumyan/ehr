@@ -1,0 +1,47 @@
+<!doctype html>
+<html ng-app="EHRApp">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electronic Health Record</title>
+    <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css">
+</head>
+
+<body ng-controller="mainController">
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.min.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/nvd3/build/nv.d3.js"></script>
+    <script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
+    <script src="src/modules/api.module.js"></script>
+    <script src="src/modules/charts.module.js"></script>
+    <script src="src/app.js"></script>
+    <p>
+        <a href="#" ng-click="setLang('en_US')">English</a> /
+        <a href="#" ng-click="setLang('nl_NL')">Dutch</a>
+    </p>
+    <div ng-model="title">
+        <button ng-click="loadBloodPressure(bpLinks.next)" ng-if="bpLinks.next && bpLinks.self != bpLinks.last">
+            {{'NEXT' | translate}} >> </button>
+        <button ng-click="loadBloodPressure(bpLinks.first)" ng-if="bpLinks.first">
+            {{'RESET' | translate}} </button>
+    </div>
+    <nvd3 options="optionsBp" data="dataBp"></nvd3>
+    <div>
+        <button ng-click="loadBmi(bmiLinks.next)" ng-if="bmiLinks.next && bmiLinks.self != bmiLinks.last">
+             {{'NEXT' | translate}} >> </button>
+        <button ng-click="loadBmi(bmiLinks.first)" ng-if="bmiLinks.first">
+            {{'RESET' | translate}} </button>
+    </div>
+    <nvd3 options="optionsBmi" data="dataBmi"></nvd3>
+    <div>
+        <button ng-click="loadAcq(acqLinks.next)" ng-if="acqLinks.next && acqLinks.self != acqLinks.last">
+             {{'NEXT' | translate}} </button>
+        <button ng-click="loadAcq(acqLinks.first)" ng-if="acqLinks.first">
+            {{'RESET' | translate}} </button>
+    </div>
+    <nvd3 options="optionsAcq" data="dataAcq"></nvd3>
+</body>
+
+</html>
