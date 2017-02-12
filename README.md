@@ -1,4 +1,4 @@
-# ehr
+# Ehr
 Electronic Health Record
 
 
